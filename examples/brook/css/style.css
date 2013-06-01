@@ -1,0 +1,25 @@
+body {
+  background-color: lightblue;
+}
+
+h3 {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  color: yellow;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+

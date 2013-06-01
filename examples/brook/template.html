@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{+title+}</title>
+    {+css [-filename=/css/style.css-] +}
+    {+js [-filename=/js/test.js-] +}
+  </head>
+  <body>
+    <div class="center">
+      <h3>{+title+}</h3>
+      <p>An image should be shown below:</p>
+      <img src="/img/test.png" alt="test.png" onclick="testjs()" />
+      <p>If you click the image, a dialog should pop up</p>
+    </div>
+  </body>
+</html>
+

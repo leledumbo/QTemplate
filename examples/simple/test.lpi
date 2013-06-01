@@ -32,21 +32,21 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <Units Count="3">
+    <RequiredPackages Count="1">
+      <Item1>
+        <PackageName Value="qtemplatepkg"/>
+      </Item1>
+    </RequiredPackages>
+    <Units Count="2">
       <Unit0>
         <Filename Value="test.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="test"/>
       </Unit0>
       <Unit1>
-        <Filename Value="flextemplate.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="flextemplate"/>
-      </Unit1>
-      <Unit2>
         <Filename Value="test.tpl"/>
         <IsPartOfProject Value="True"/>
-      </Unit2>
+      </Unit1>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -56,7 +56,6 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="."/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <CodeGeneration>
