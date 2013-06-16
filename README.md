@@ -1,3 +1,7 @@
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=7WRXRMDSM72W8&lc=ID&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted">
+  <img src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif" />
+</a>
+
 QTemplate - Object Pascal's quick templating engine
 
 This unit implements an alternative to FPTemplate engine, with different approach.
