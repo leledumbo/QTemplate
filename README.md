@@ -3,11 +3,12 @@
 </a>
 
 QTemplate - Object Pascal's quick templating engine
+===
 
 This unit implements an alternative to FPTemplate engine, with different approach.
 FPTemplate uses event driven approach where a the core lies in OnReplaceTag callback.
 For example, consider the following template:
-
+```pascal
 {+MyTag [Param1=Value1] [Param2=Value2]+}
 
 An example OnReplaceTag callback:
@@ -39,12 +40,12 @@ begin
     // not a recognized tag
   end;
 end;
-
+```
 As you can see, a series of if statement must be implemented. This could get messy for template
 with a lot of tags. QTemplate removes above burden to check for tag and instead gives a nice and
 easy to use map like functionality to connect tag and callback. QTemplate way to solve above case
 is:
-
+```pascal
 function TMyTemplateHandler.ReplaceMyTag(const ATag: String; AParams: TStringList): String;
 begin
   
@@ -54,9 +55,9 @@ function TMyTemplateHandler.ReplaceMyOtherTag(const ATag: String; AParams: TStri
 begin
   
 end;
-
+```
 then somewhere (constructor is a good choice):
-
+```pascal
 begin
   with TQTemplate.Create('templatefilename') do
     try
@@ -70,3 +71,4 @@ begin
       Free;
     end;
 end;
+```
