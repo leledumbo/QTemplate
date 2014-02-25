@@ -49,7 +49,8 @@ var
   TagName: String;
 begin
   TagName := GetTagName(TagString);
-  if FTagMap.Contains(TagName) then begin
+  //if FTagMap.Contains(TagName) then begin
+  if FTagMap.IndexOf(TagName) >= 0 then begin
     ReplaceText := FTagMap[TagName](TagName,TagParams);
   end;
 end;
@@ -95,4 +96,4 @@ begin
 end;
 
 end.
-
+
