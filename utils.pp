@@ -5,7 +5,9 @@ unit Utils;
 interface
 
 uses
-  Classes, SysUtils, ghashmap;
+  //ghashmap
+  fgl,
+  Classes, SysUtils;
 
 type
 
@@ -15,7 +17,8 @@ type
     class function hash(s: String; n: Integer): Integer;
   end;
 
-  generic TStringHashMap<T> = class(specialize THashMap<String,T,TStringHash>) end;
+  //generic TStringHashMap<T> = class(specialize THashMap<String,T,TStringHash>) end;
+  generic TStringHashMap<T> = class(specialize TFPGMap<String,T>) end;
 
 implementation
 
