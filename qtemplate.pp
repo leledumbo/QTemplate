@@ -49,8 +49,11 @@ var
   TagName: String;
 begin
   TagName := GetTagName(TagString);
-  //if FTagMap.Contains(TagName) then begin
+  {$if fpc_fullversion >= 20701}
+  if FTagMap.Contains(TagName) then begin
+  {$else fpc_fullversion >= 20701}
   if FTagMap.IndexOf(TagName) >= 0 then begin
+  {$endif fpc_fullversion >= 20701}
     ReplaceText := FTagMap[TagName](TagName,TagParams);
   end;
 end;
