@@ -124,14 +124,15 @@ var
   S : TStringStream;
 begin
      S:=TStringStream.Create('');
-      Try
+      try
         If (FStream<>Nil) then
           begin
           CreateParser.ParseStream(FStream,S);
           Result:=S.DataString;
         end;
-    Finally
-      S.Free;
+    finally
+     FreeAndNil(S);
+     FreeAndNil(FStream);
     end;
 end;
 
