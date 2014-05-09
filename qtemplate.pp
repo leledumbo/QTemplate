@@ -19,14 +19,17 @@ type
   private
     FTagMap: TCallbackMap;
     FCaseSensitive: Boolean;
+    FStream:TStream;
     function GetTagName(const TagString: String): String;
     procedure ReplaceTags(Sender: TObject; const TagString: String;
       TagParams: TStringList; out ReplaceText: String);
     function GetTag(const TagString: String): TTagCallback;
     procedure SetTag(const TagString: String; AValue: TTagCallback);
   public
-    constructor Create(const AFileName: String); virtual;
+    constructor Create(const AFileName: String);overload; virtual;
+    constructor Create(const AStream: TStream);overload; virtual;
     destructor Destroy; override;
+    function GetContentSream:String;
     property Tags[const TagString: String]: TTagCallback read GetTag write SetTag; default;
     property CaseSensitive: Boolean read FCaseSensitive write FCaseSensitive;
   end;
@@ -92,10 +95,45 @@ begin
   OnReplaceTag := @ReplaceTags;
 end;
 
+constructor TQTemplate.Create(const AStream: TStream);
+begin
+    inherited Create;
+  FStream := AStream;
+
+  FCaseSensitive := false;
+  FTagMap := TCallbackMap.Create;
+
+  StartDelimiter := '{+';
+  EndDelimiter := '+}';
+  ParamStartDelimiter := '[-';
+  ParamValueSeparator := '=';
+  ParamEndDelimiter := '-]';
+
+  AllowTagParams := true;
+  OnReplaceTag := @ReplaceTags;
+end;
+
 destructor TQTemplate.Destroy;
 begin
-  FTagMap.Free;
+  FreeAndNil(FTagMap);
   inherited Destroy;
+end;
+
+function TQTemplate.GetContentSream: String;
+var
+  S : TStringStream;
+begin
+     S:=TStringStream.Create('');
+      try
+        If (FStream<>Nil) then
+          begin
+          CreateParser.ParseStream(FStream,S);
+          Result:=S.DataString;
+        end;
+    finally
+     FreeAndNil(S);
+     FreeAndNil(FStream);
+    end;
 end;
 
 end.
