@@ -132,7 +132,6 @@ begin
         end;
     finally
      FreeAndNil(S);
-     FreeAndNil(FStream);
     end;
 end;
 
