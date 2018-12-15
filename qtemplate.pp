@@ -20,6 +20,7 @@ type
     FTagMap: TCallbackMap;
     FCaseSensitive: Boolean;
     FStream:TStream;
+    FFreeStream: Boolean;
     function GetTagName(const TagString: String): String;
     procedure ReplaceTags(Sender: TObject; const TagString: String;
       TagParams: TStringList; out ReplaceText: String);
@@ -27,7 +28,7 @@ type
     procedure SetTag(const TagString: String; AValue: TTagCallback);
   public
     constructor Create(const AFileName: String);overload; virtual;
-    constructor Create(const AStream: TStream);overload; virtual;
+    constructor Create(const AStream: TStream; FreeStream: Boolean = True);overload; virtual;
     destructor Destroy; override;
     function GetContentSream:String;
     property Tags[const TagString: String]: TTagCallback read GetTag write SetTag; default;
@@ -95,9 +96,10 @@ begin
   OnReplaceTag := @ReplaceTags;
 end;
 
-constructor TQTemplate.Create(const AStream: TStream);
+constructor TQTemplate.Create(const AStream: TStream; FreeStream: Boolean);
 begin
     inherited Create;
+  FFreeStream := FreeStream;
   FStream := AStream;
 
   FCaseSensitive := false;
@@ -132,7 +134,8 @@ begin
         end;
     finally
      FreeAndNil(S);
-     FreeAndNil(FStream);
+     if FFreeStream then
+       FreeAndNil(FStream);
     end;
 end;
 
