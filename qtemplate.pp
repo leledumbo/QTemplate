@@ -27,7 +27,7 @@ type
     procedure SetTag(const TagString: String; AValue: TTagCallback);
   public
     constructor Create(const AFileName: String);overload; virtual;
-    constructor Create(const AStream: TStream);overload; virtual;
+    constructor Create(const AStream: TStream);overload; virtual; // caution: Destroyed inside the class
     destructor Destroy; override;
     function GetContentSream:String;
     property Tags[const TagString: String]: TTagCallback read GetTag write SetTag; default;
